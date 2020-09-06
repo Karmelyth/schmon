@@ -60,9 +60,12 @@
       <script>scripts\mob_finish.gml</script>
     </scripts>
     <scripts name="Schmon-related">
-      <script>scripts\schmon_init.gml</script>
+      <script>scripts\attack_info.gml</script>
       <script>scripts\calculate_stats.gml</script>
+      <script>scripts\combat_start.gml</script>
       <script>scripts\schmon_create.gml</script>
+      <script>scripts\schmon_init.gml</script>
+      <script>scripts\bm_button.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -116,6 +119,10 @@
         <object>objects\butPauseOptions</object>
         <object>objects\butPauseExit</object>
       </objects>
+      <objects name="Combat Menu">
+        <object>objects\butCombatAttack</object>
+        <object>objects\butCombatAttackSelect</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -123,9 +130,10 @@
     <room>rooms\rTrailerHome</room>
     <room>rooms\rCombat</room>
   </rooms>
-  <constants number="2">
+  <constants number="3">
     <constant name="g">oGame</constant>
     <constant name="dev">true</constant>
+    <constant name="current_frame">oGame.CurrentFrame</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

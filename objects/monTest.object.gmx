@@ -26,18 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>//Setting up vars:
-attack     = 50;
-defense    = 40;
-sp_attack  = 50;
-sp_defense = 40;
-speed      = 1;
-health     = 50;
+base_attack     = 50;
+base_defense    = 40;
+base_sp_attack  = 50;
+base_sp_defense = 40;
+base_speed      = 1;
+base_health     = 50;
 
-barmax = 700;
-action_bar = array_create(2);
-actions_bar[0] = 500;
-actions_bar[1] = 700;
-
+//Dont change this on create bro:
+barmax = 1500;
+action_bar[0] = 1000;
+action_bar[1] = 1250;
+action_bar[1] = 1500;
 /*var _i = 0,
     _barcount = 0;
 while barfill &gt; bars[_i] &amp;&amp; _i &lt;=  array_length_1d(action_bar){
@@ -48,7 +48,8 @@ while barfill &gt; bars[_i] &amp;&amp; _i &lt;=  array_length_1d(action_bar){
 current_health = health;
 status = 0;
 parent = self;
-charges = 2;
+
+friction = 0;
 </string>
           </argument>
         </arguments>
