@@ -15,6 +15,7 @@
       <sprite>sprites\tBog</sprite>
       <sprite>sprites\tStreet</sprite>
       <sprite>sprites\tCarpet</sprite>
+      <sprite>sprites\tTrailerWall</sprite>
     </sprites>
     <sprites name="Mobs">
       <sprite>sprites\sNPC</sprite>
@@ -40,6 +41,9 @@
   </sprites>
   <backgrounds name="background">
     <background>background\bacTest</background>
+    <background>background\tsGrass</background>
+    <background>background\tsdirt</background>
+    <background>background\tsTrailerWall</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -81,6 +85,7 @@
       <object>objects\oFloorBog</object>
       <object>objects\oFloorStreet</object>
       <object>objects\oFloorDyingGrass</object>
+      <object>objects\oTrailerWall</object>
     </objects>
     <objects name="MapObjects">
       <object>objects\oMapObject</object>
