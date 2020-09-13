@@ -71,6 +71,8 @@
       <script>scripts\schmon_init.gml</script>
       <script>scripts\bm_button.gml</script>
     </scripts>
+    <script>scripts\view_shake.gml</script>
+    <script>scripts\view_shake_at.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fMedium</font>
