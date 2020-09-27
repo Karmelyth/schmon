@@ -30,18 +30,27 @@ base_attack     = 70;
 base_defense    = 30;
 base_sp_attack  = 70;
 base_sp_defense = 30;
-base_speed      = 30;
+base_speed      = 1;
 base_health     = 30;
+spr_front = sSchmonOtherFront;
+spr_back  = sSchmonOtherBack;
+
+//Dont change this on create bro:
+barmax = 1000;
+action_bar[0] = 400;
+action_bar[1] = 1000;
+/*var _i = 0,
+    _barcount = 0;
+while barfill &gt; bars[_i] &amp;&amp; _i &lt;=  array_length_1d(action_bar){
+    _barcount++;
+    _i++;
+}*/
 
 current_health = health;
 status = 0;
 parent = self;
-charges = 2;
 
-barmax = 700;
-action_bar = array_create(2);
-actions_bar[0] = 500;
-actions_bar[1] = 700;
+friction = 0;
 </string>
           </argument>
         </arguments>

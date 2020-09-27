@@ -32,12 +32,14 @@ base_sp_attack  = 50;
 base_sp_defense = 40;
 base_speed      = 1;
 base_health     = 50;
+spr_front = sSchmonTestFront;
+spr_back  = sSchmonTestBack;
 
 //Dont change this on create bro:
 barmax = 1500;
 action_bar[0] = 1000;
 action_bar[1] = 1250;
-action_bar[1] = 1500;
+action_bar[2] = 1500;
 /*var _i = 0,
     _barcount = 0;
 while barfill &gt; bars[_i] &amp;&amp; _i &lt;=  array_length_1d(action_bar){

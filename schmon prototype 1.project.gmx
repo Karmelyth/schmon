@@ -38,6 +38,12 @@
       </sprites>
     </sprites>
     <sprite>sprites\sPause</sprite>
+    <sprites name="Schmons">
+      <sprite>sprites\sSchmonOtherBack</sprite>
+      <sprite>sprites\sSchmonOtherFront</sprite>
+      <sprite>sprites\sSchmonTestBack</sprite>
+      <sprite>sprites\sSchmonTestFront</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bacTest</background>

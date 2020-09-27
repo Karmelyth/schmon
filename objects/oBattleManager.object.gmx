@@ -109,10 +109,13 @@ if _cm.barfill &gt; _cm.barmax{_cm.barfill = _cm.barmax}
 draw_set_font(fMedium);
 
 //Your schmon:
-if slots[0, 0] &gt; -4{
-    draw_text_shadow(_pleft, _ypos, slots[0,0].name);
-    draw_text_shadow(_pleft + _hpw - string_width("Lv." + string(slots[0,0].level)), _ypos, "Lv." + string(slots[0,0].level));
+if _cm &gt; -4{
+    draw_text_shadow(_pleft, _ypos, _cm.name);
+    draw_text_shadow(_pleft + _hpw - string_width("Lv." + string(_cm.level)), _ypos, "Lv." + string(_cm.level));
     _ypos += 20;
+    
+    //Sprite:
+    draw_sprite_ext(_cm.spr_back, 0, view_wview - 250, view_hview * 2 - 80, 6, 6, 0, c_white, 1);
     
     //Health bar:
     draw_rectangle_colour(_pleft - 2, _ypos - 2       , _pleft + _hpw + 2                                  , _ypos + _hph + 2 , c_black, c_black, c_black, c_black, false);
@@ -153,21 +156,83 @@ if slots[0, 0] &gt; -4{
     if button[0,3] = true{
         if keyboard_check_pressed(g.key_pause){
             button[0,3] = false;
-        }
-    
-    }
-    
+        }   
+    }  
     if button[1,3] = true{
         if keyboard_check_pressed(g.key_pause){
             button[1,3] = false;
-        }
-    
+        }   
     }
 
-    button[0,3] = bm_button(button[0,0], button[0,1] - string_height(button[0,2]) / 2, button[0,0] + string_width(button[0,2]), button[0,1] + string_height(button[0,2]), button[0,3], button[0,2])
-    button[1,3] = bm_button(button[1,0], button[1,1] - string_height(button[1,2]) / 2, button[1,0] + string_width(button[1,2]), button[1,1] + string_height(button[1,2]), button[1,3], button[1,2])
-    button[2,3] = bm_button(button[2,0], button[2,1] - string_height(button[2,2]) / 2, button[2,0] + string_width(button[2,2]), button[2,1] + string_height(button[2,2]), button[2,3], button[2,2])
-    button[3,3] = bm_button(button[3,0], button[3,1] - string_height(button[3,2]) / 2, button[3,0] + string_width(button[3,2]), button[3,1] + string_height(button[3,2]), button[3,3], button[3,2])
+    button[0,3] = bm_button(button[0,0], button[0,1] - string_height(button[0,2]) / 2, button[0,0] + string_width(button[0,2]), button[0,1] + string_height(button[0,2]), button[0,3], button[0,2], 0)
+    button[1,3] = bm_button(button[1,0], button[1,1] - string_height(button[1,2]) / 2, button[1,0] + string_width(button[1,2]), button[1,1] + string_height(button[1,2]), button[1,3], button[1,2], 1)
+    button[2,3] = bm_button(button[2,0], button[2,1] - string_height(button[2,2]) / 2, button[2,0] + string_width(button[2,2]), button[2,1] + string_height(button[2,2]), button[2,3], button[2,2], 2)
+    button[3,3] = bm_button(button[3,0], button[3,1] - string_height(button[3,2]) / 2, button[3,0] + string_width(button[3,2]), button[3,1] + string_height(button[3,2]), button[3,3], button[3,2], 3)
+
+    //Your attacks
+    if button[0, 3] = true{
+        var _i = 0;
+        repeat(array_length_1d(_cm.attacks)){
+            var _x = button[0,0] - 130,
+                _y = button[0, 1] + 30 * _i - 10,
+                _s = attack_info(_cm.attacks[_i], "name"),
+                _c = c_ltgray;
+            if point_in_rectangle(window_mouse_get_x(), window_mouse_get_y(), _x - string_width(_s)/2, _y - string_height(_s)/2, _x + string_width(_s), _y + string_height(_s)) = true{
+                _c = c_white   
+            }
+            draw_text_colour_shadow(_x, _y, _s, _c, 1);
+            _i++;
+        }
+    }
+}
+
+_cm = slots[1,0]
+_ypos = view_yview + 20
+
+
+_cm.barfill += _cm.parent.base_speed
+if _cm.barfill &gt; _cm.barmax{_cm.barfill = _cm.barmax}
+
+//The enemy
+if _cm &gt; -4{
+
+    draw_text_shadow(_pleft, _ypos, _cm.name);
+    draw_text_shadow(_pleft + _hpw - string_width("Lv." + string(_cm.level)), _ypos, "Lv." + string(_cm.level));
+    _ypos += 20;
+
+    draw_rectangle_colour(_pleft - 2, _ypos - 2       , _pleft + _hpw + 2                                  , _ypos + _hph + 2 , c_black, c_black, c_black, c_black, false);
+    draw_rectangle_colour(_pleft    , _ypos           , _pleft + _hpw * (_cm.current_health/_cm.max_health), _ypos + _hph     ,  c_lime,  c_lime,  c_lime,  c_lime, false);
+    draw_set_alpha(.45);
+    draw_rectangle_colour(_pleft    , _ypos + _hph + 1, _pleft + _hpw * (_cm.current_health/_cm.max_health), _ypos + _hph * .7,  c_navy,  c_navy,  c_navy,  c_navy, false);
+    draw_set_alpha(1);
+    if dev = true{
+        var _str_hp = string(round(_cm.current_health)) + "/" + string(round(_cm.max_health));
+        draw_text_shadow(_pleft + _hpw / 2 - string_width(_str_hp) / 2, _ypos + _hph / 4, _str_hp)
+    }
+    _ypos += _hph + 10;
+    
+    //Action bars:
+    for(var _i = 0, _xoff = 0; _i &lt; array_length_1d(_cm.action_bar); _i++){
+        var _j = 0;
+        if _i &gt; 0{_j = _cm.action_bar[_i - 1]}
+        
+        draw_rectangle_colour(_pleft + _xoff + _j / 10 - 2, _ypos - 2,  _pleft + _xoff + (_cm.action_bar[_i] - _j) / 10 + _j / 10 + 2, _ypos + _chargebarh + 2,  c_black,  c_black,  c_black,  c_black, false);
+        if true{  
+            var _bw = _cm.action_bar[_i] - _j,
+                _co = c_orange;
+                if _cm.barfill &gt;= _cm.action_bar[_i]
+                {
+                    if current_frame mod 17 = 0{
+                        _co = c_white;
+                    }else{_co = c_yellow}
+                }
+                if _cm.barfill &gt;= _j
+                {
+                    draw_rectangle_colour(_pleft + _xoff + _j / 10, _ypos, _pleft + _xoff + ((_cm.action_bar[_i] - _j) * clamp((_cm.barfill - _j)/ (_cm.action_bar[_i] - _j), 0, 1)) / 10 + _j / 10, _ypos + _chargebarh, _co, _co, _co, _co, false);
+                }
+        }
+        _xoff += 10;
+    }
 }
 
 draw_text_shadow(10, 100, string(round(slots[0,0].barfill)))
