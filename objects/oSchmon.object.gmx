@@ -31,6 +31,10 @@ base_stats    = array_create(6);
 ev_values     = array_create(6);
 iv_values     = array_create(6);
 
+//Vars for bar manipulation from using attacks:
+use_time        = 0;
+use_time_start  = 0;
+use_time_attack = 0;
 
 
 //access stats like: current_stats[s.attack]

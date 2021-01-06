@@ -70,12 +70,31 @@
       <script>scripts\mob_finish.gml</script>
     </scripts>
     <scripts name="Schmon-related">
-      <script>scripts\attack_info.gml</script>
+      <script>scripts\bm_button.gml</script>
       <script>scripts\calculate_stats.gml</script>
       <script>scripts\combat_start.gml</script>
       <script>scripts\schmon_create.gml</script>
       <script>scripts\schmon_init.gml</script>
-      <script>scripts\bm_button.gml</script>
+      <scripts name="Attacks">
+        <script>scripts\atk_growl.gml</script>
+        <script>scripts\attack_execute.gml</script>
+        <script>scripts\attack_info.gml</script>
+        <script>scripts\calculate_cost.gml</script>
+        <script>scripts\calculate_damage.gml</script>
+        <script>scripts\com_apply.gml</script>
+        <script>scripts\com_damage.gml</script>
+        <script>scripts\com_heal.gml</script>
+        <scripts name="Scratch">
+          <script>scripts\atk_a_scratch.gml</script>
+          <script>scripts\atk_f_scratch.gml</script>
+          <script>scripts\atk_scratch.gml</script>
+        </scripts>
+        <scripts name="Bite">
+          <script>scripts\atk_a_bite.gml</script>
+          <script>scripts\atk_f_bite.gml</script>
+          <script>scripts\atk_bite.gml</script>
+        </scripts>
+      </scripts>
     </scripts>
     <script>scripts\view_shake.gml</script>
     <script>scripts\view_shake_at.gml</script>

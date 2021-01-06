@@ -90,7 +90,9 @@ with instance_create(room_width/2, room_height/2, oPlayer){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Create shmon references:
+            <string>///TEST FIGHT CODE
+
+//Create shmon references:
 instance_create(0, 0, monTest);
 instance_create(0, 0, monOther);
 
@@ -105,6 +107,8 @@ with _monP{
     level = 20;
     attacks[0] = 1; // 1 here being the attack index
     attacks[1] = 2;
+    attacks[2] = 3;
+    
     calculate_stats();   
 }
 with _monE{
